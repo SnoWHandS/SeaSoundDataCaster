@@ -24,10 +24,9 @@ message = fileread('message_to_encode.txt');
 disp(message);
 
 %Convert message to binary
-binMessage = dec2bin(todecimal(message));
+binMessage = de2bi((message));
 disp(binMessage);
 
-%Decode binary to message
-decodedMessage = strcat(char(bin2dec(binMessage)))
+decodedMessage = bi2de(binMessage);
 disp(decodedMessage);
 
