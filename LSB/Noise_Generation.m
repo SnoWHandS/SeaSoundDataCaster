@@ -2,7 +2,7 @@ close all;clc;
 finalNoise = 0;
 %Create a series of brown noise samples modulated with different wave
 %frequencies
-F = 0.2:-0.05:0.05;
+F = 0.05:0.05:0.5;
 for wf = F
    %Time specifications:
    Fs = 48000;                   % samples per second
@@ -22,7 +22,7 @@ for wf = F
     'NumChannels',1);
 
    %Modulate with sine
-   brownNoiseRolling = 0.006.*rollingTide.*noiseSig();
+   brownNoiseRolling = 0.005.*rollingTide.*noiseSig();
    %Write audio output
    filename = strcat('brownnoise_F-',num2str(wf), '.wav');
    audiowrite(filename,brownNoiseRolling,48000);
@@ -35,5 +35,5 @@ for wf = F
 end
 figure;
 plot(finalNoise)
-audiowrite('rolling_freq_sweep.wav',finalNoise,48000)
+audiowrite('rolling_freq_sweep_F-005-5.wav',finalNoise,48000)
 
