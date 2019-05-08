@@ -11,7 +11,7 @@ for wf = F
    t = (0:dt:StopTime-dt)';     % seconds
    %%Sine wave:
    Fc = wf;                     % hertz
-   rollingTide = sin(2*pi*Fc*t) +1.25;
+   rollingTide = sin(2*pi*Fc*t) +1.7;
    %generate same length of noise
    %Specify how long the noise should be for
    Length_Of_Noise = 1/wf;
