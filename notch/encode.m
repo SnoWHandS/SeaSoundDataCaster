@@ -14,10 +14,11 @@ plaintext = fread(pid, 'uint8');
 
 bitcount = length(plaintext)*8
 
-ttrans = 0.5;
+ttrans = 0.2;
 
 otrans = ttrans * fs;
 strans = ttrans*2 * fs;
+nswap = otrans*0.4;
 
 minsample = strans * bitcount;
 
@@ -56,18 +57,24 @@ end
 
 length(mono)/strans
 
-n1 = notch_16;
-n0 = notch_18;
+n1 = notch_6000;
+n0 = notch_7000;
 
 i = 1;
 
 output = [];
+
+leading_scaler = rot90(linspace(1,0,nswap));
+trailing_scaler = rot90(linspace(0,1,nswap));
 
 for bytes = 1:length(plaintext)
 
     for bits = 1:8
 
         notch = mono(i*strans:(i*strans) + otrans);
+
+        leading_trans = notch(1:nswap) .* leading_scaler;
+        trailing_trans = notch(end-nswap+1: end) .* trailing_scaler;
 
         if (1 == bitget(plaintext(bytes), bits, 'uint8'))
 
@@ -78,6 +85,10 @@ for bytes = 1:length(plaintext)
             notch = filter(n0, notch);
 
         end
+
+        notch(1:nswap) = (notch(1:nswap) + leading_trans)/2;
+
+        notch(end-nswap+1: end) = (notch(end-nswap+1: end) + trailing_trans)/2;
 
         mono(i*strans:(i*strans)+otrans) = notch;
 
