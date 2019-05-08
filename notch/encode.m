@@ -14,7 +14,7 @@ plaintext = fread(pid, 'uint8');
 
 bitcount = length(plaintext)*8
 
-ttrans = 0.2;
+ttrans = 0.5;
 
 otrans = ttrans * fs;
 strans = ttrans*2 * fs;
@@ -57,8 +57,8 @@ end
 
 length(mono)/strans
 
-n1 = notch_6000;
-n0 = notch_7000;
+n1 = notch_0;
+n0 = notch_1;
 
 i = 1;
 
@@ -86,9 +86,9 @@ for bytes = 1:length(plaintext)
 
         end
 
-        notch(1:nswap) = (notch(1:nswap) + leading_trans)/2;
+        % notch(1:nswap) = (notch(1:nswap) + leading_trans)/2;
 
-        notch(end-nswap+1: end) = (notch(end-nswap+1: end) + trailing_trans)/2;
+        % notch(end-nswap+1: end) = (notch(end-nswap+1: end) + trailing_trans)/2;
 
         mono(i*strans:(i*strans)+otrans) = notch;
 
