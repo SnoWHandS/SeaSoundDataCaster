@@ -57,12 +57,10 @@ end
 
 length(mono)/strans
 
-n1 = notch_0;
-n0 = notch_1;
+n1 = notch_1;
+n0 = notch_0;
 
 i = 1;
-
-output = [];
 
 leading_scaler = rot90(linspace(1,0,nswap));
 trailing_scaler = rot90(linspace(0,1,nswap));
@@ -91,6 +89,12 @@ for bytes = 1:length(plaintext)
         % notch(end-nswap+1: end) = (notch(end-nswap+1: end) + trailing_trans)/2;
 
         mono(i*strans:(i*strans)+otrans) = notch;
+
+        savefile = mono(i*strans:(i*strans) + otrans);
+        savebase = mono((i*strans)+otrans:(i+1)*strans);
+
+        audiowrite(strcat('./signal/', int2str((i*2)-1), '.wav'), savefile, fs);
+        audiowrite(strcat('./signal/', int2str((i*2)), '.wav'), savebase, fs);
 
         i = i + 1;
 
