@@ -54,7 +54,6 @@ state = -1;
 threshold = 1.4;
 underthreshold = 1;
 
-
 out = [];
 
 for i = 1:length(s0)

@@ -8,6 +8,7 @@
 [s8, fs] = audioread('./freqsweep/8.wav');
 [s9, fs] = audioread('./freqsweep/9.wav');
 [s10, fs] = audioread('./freqsweep/10.wav');
+[bs, fs] = audioread('./brownnoise.wav');
 
 pid = fopen('plaintext.bin', 'r');
 plaintext = fread(pid, 'uint8');
@@ -20,13 +21,16 @@ otrans = ttrans * fs;
 strans = ttrans*2 * fs;
 nswap = otrans*0.4;
 
-minsample = strans * bitcount;
+minsample = strans * bitcount + 10;
 
 mono = [];
 
 while length(mono) < minsample
 
     index = randi([1,10]);
+
+    index = 11;
+
     switch index
 
     case 1
@@ -49,6 +53,8 @@ while length(mono) < minsample
         mono = vertcat(mono, s9);
     case 10
         mono = vertcat(mono, s10);
+    case 11
+        mono = vertcat(mono, bs);
     otherwise
         mono = mono;
     end
@@ -90,16 +96,20 @@ for bytes = 1:length(plaintext)
 
         mono(i*strans:(i*strans)+otrans) = notch;
 
-        savefile = mono(i*strans:(i*strans) + otrans);
-        savebase = mono((i*strans)+otrans:(i+1)*strans);
+        %savefile = mono(i*strans:(i*strans) + otrans);
+        %savebase = mono((i*strans)+otrans:(i+1)*strans);
 
-        audiowrite(strcat('./signal/', int2str((i*2)-1), '.wav'), savefile, fs);
-        audiowrite(strcat('./signal/', int2str((i*2)), '.wav'), savebase, fs);
+        %audiowrite(strcat('./signal/', int2str((i*2)-1), '.wav'), savefile, fs);
+        %audiowrite(strcat('./signal/', int2str((i*2)), '.wav'), savebase, fs);
 
         i = i + 1;
 
     end
 
+end
+
+for k = 1:length(mono)
+    mono(i) = mono(i) * (0.5 + (0.5*sin(k/400000)));
 end
 
 audiowrite('output.wav', mono, fs);
