@@ -2,11 +2,8 @@
 LSB_message_encode
 
 %play waveform
-load('handel.mat')
-whos y Fs
-
-player = audioplayer(y,Fs);
-
+[cover, Fs] = audioread('enc.wav');
+player = audioplayer(cover,Fs);
 play(player);
 
 

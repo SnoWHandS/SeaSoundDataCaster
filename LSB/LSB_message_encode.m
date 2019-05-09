@@ -13,7 +13,7 @@ decodedMessage = strcat(char(bin2dec(binMessage)))
 disp(decodedMessage);
 
 
-fid = fopen('./brown_samples/rolling_freq_sweep.wav','r');
+fid = fopen('./brown_samples/rolling_freq_sweep_rand.wav','r');
 header = fread(fid,40,'uint8=>char');
 dsize  = fread(fid,1,'uint32');
 [cover,len_cover] = fread(fid,inf,'uint16');
