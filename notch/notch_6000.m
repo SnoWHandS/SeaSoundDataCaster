@@ -8,12 +8,12 @@ function Hd = notch_6000
 % Equiripple Bandstop filter designed using the FIRPM function.
 
 % All frequency values are in Hz.
-Fs = 44000;  % Sampling Frequency
+Fs = 48000;  % Sampling Frequency
 
-Fpass1 = 4750;            % First Passband Frequency
-Fstop1 = 5750;            % First Stopband Frequency
-Fstop2 = 6250;            % Second Stopband Frequency
-Fpass2 = 7250;            % Second Passband Frequency
+Fpass1 = 5750;            % First Passband Frequency
+Fstop1 = 6750;            % First Stopband Frequency
+Fstop2 = 7250;            % Second Stopband Frequency
+Fpass2 = 8250;            % Second Passband Frequency
 Dpass1 = 0.028774368332;  % First Passband Ripple
 Dstop  = 0.031622776602;  % Stopband Attenuation
 Dpass2 = 0.057501127785;  % Second Passband Ripple
