@@ -11,7 +11,7 @@ for wf = F
    t = (0:dt:StopTime-dt)';     % seconds
    %%Sine wave:
    Fc = wf;                     % hertz
-   rollingTide = sin(2*pi*Fc*t) +1.7;
+   rollingTide = sin(2*pi*Fc*t)+2.5;
    %generate same length of noise
    %Specify how long the noise should be for
    Length_Of_Noise = 1/wf;
@@ -22,7 +22,7 @@ for wf = F
     'NumChannels',1);
 
    %Modulate with sine
-   brownNoiseRolling = 0.005.*rollingTide.*noiseSig();
+   brownNoiseRolling = 0.002.*rollingTide.*noiseSig();
    %Write audio output
    filename = strcat('brownnoise_F-',num2str(wf), '.wav');
    audiowrite(filename,brownNoiseRolling,48000);
