@@ -10,11 +10,11 @@ n1 = 865;
 j = 1;
 state = 0;
 
-gate = 10
+gate = 10;
 
-length(y)
+length(y);
 
-(j+1) * sl
+(j+1) * sl;
 
 s0 = []
 s1 = []
@@ -28,7 +28,7 @@ while (j+1) * sl < length(y)
     dF = fs/sl;                      % hertz
     f = -fs/2:dF:fs/2-dF;
 
-    length(S)
+    length(S);
 
     bin0 = mean(abs(S(n0-gate: n0+gate)));
     bin1 = mean(abs(S(n1-gate: n1+gate)));
