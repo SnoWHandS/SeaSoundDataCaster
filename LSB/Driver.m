@@ -1,13 +1,24 @@
 
-LSB_message_encode
+%Pop up to ask for cover audio file
+[FileName,PathName] = uigetfile({'*.wav'}, 'Select cover audio:', 'rolling_freq_sweep_F-005-5.wav');
+[file.path,file.name,file.ext] = fileparts([PathName FileName]);
 
-%play waveform
-load('handel.mat')
-whos y Fs
+%Assign audio in and audio out
+audioIn = [PathName FileName];
+audioOut = [file.path '/' file.name '_stego' file.ext];
 
-player = audioplayer(y,Fs);
+%Pop up to ask for message file
+[MessageFileName,PathName] = uigetfile({'.txt'}, 'Select message file:', 'message_to_encode.txt');
+message = fileread(MessageFileName);
 
-play(player);
+%Run message encoder with LSB
+LSB_message_encode(audioIn, audioOut, message);
 
+%Pop up to ask for stego audio file
+[FileNameStego,PathNameStego] = uigetfile({'*.wav'}, 'Select audio to analyse:', 'rolling_freq_sweep_F-005-5_stego.wav');
+audioStegoIn = [PathNameStego FileNameStego];
 
-LSB_message_decode
+%Decode message
+decipheredMessage = LSB_message_decode(audioStegoIn);
+%display decoded message
+disp(decipheredMessage)
