@@ -1,7 +1,6 @@
 [y, fs] = audioread('./output.wav');
 
 sl = 1200;
-
 f0 = 8550;
 n0 = 814; 
 f1 = 10550;
