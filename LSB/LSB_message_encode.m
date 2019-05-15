@@ -26,14 +26,16 @@ bin = de2bi(double(message),8);
 [numchar, bits] = size(bin);
 
 %Get message length to be written to file
-len_msg = numchar*bits;
+len_cover
+len_msg = numchar*bits
+len_msg_32 = len_msg+32
 %Change message length to binary
 numchar_bin = de2bi(numchar,32);
 %transpose that boi
 numchar_bin = numchar_bin';
 
-%Make sure the message length plus header fits
-if (len_cover >= len_msg+32)
+%Make sure the message length plus message size plus header fits
+if (len_cover >= len_msg+32+44)
     %Length of message is encoded
     cover_original(44:75) = bitset(cover_original(44:75),1,numchar_bin(1:32));
     %Message is encoded
