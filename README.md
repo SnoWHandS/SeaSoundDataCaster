@@ -70,29 +70,29 @@ A standard message used during development to ensure encoding is working
 ## shortmsg.txt
 A message one character long to test BER and NC
 
-##brown_samples
+## brown_samples
 Location of a unmodulated brownnoise waveform and some brown noise modulated with varying frequency.
 
-##/testing
+## /testing
 Directory with test code for BER and Normalised correlation.
 
-##/testing/NC_driver.m
+## /testing/NC_driver.m
 Driver code to run the normalised correlation between two files
 
-##/testing/BER_driver.m
+## /testing/BER_driver.m
 Driver code to run the BER test between two files
 
-##/testing/BER.m
+## /testing/BER.m
 Code to calculate the BER
 
-##/testing/getBits.m
+## /testing/getBits.m
 Code to get the bits in a file
 
-##/testing/max_msg
+## /testing/max_msg
 Directory containing .wav samples with the max message space encoded
 
-##/testing/min_msg
+## /testing/min_msg
 Directory containing .wav samples with the min message space encoded
 
-##/testing/NC.m
+## /testing/NC.m
 Code to perform normalised correlation between files.
